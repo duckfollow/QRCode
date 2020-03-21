@@ -50,14 +50,40 @@
             </ImageView>
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-        <ImageView
-            android:id="@+id/img_qr_code"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
-        </ImageView>
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_qr_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
     </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+    <SeekBar
+        android:layout_below="@+id/view_shared"
+        android:id="@+id/seekbar_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="800"
+        android:progressDrawable="@drawable/seekbar_drawable_progress"
+        android:thumb="@drawable/seekbar_drawable_thumb"
+        android:splitTrack="false"
+        android:progress="90"
+        android:maxHeight="5dp"
+        android:visibility="gone"
+        />
+
 
     <me.duckfollow.qrcode.view.SquareLinearLayout
         android:visibility="gone"
@@ -68,12 +94,25 @@
         android:background="#FFFFFF"
         android:layout_margin="10dp">
 
-        <ImageView
-            android:id="@+id/img_qr_code2"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
-        </ImageView>
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_qr_code2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/img_logo2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
 
     </me.duckfollow.qrcode.view.SquareLinearLayout>
 

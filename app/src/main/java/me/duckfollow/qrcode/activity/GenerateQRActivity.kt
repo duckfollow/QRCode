@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
+import android.widget.SeekBar
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -33,6 +35,7 @@ import com.google.zxing.common.BitMatrix
 import kotlinx.android.synthetic.main.activity_generate_qr.*
 import me.duckfollow.qrcode.R
 import me.duckfollow.qrcode.user.UserProfile
+import me.duckfollow.qrcode.util.ConvertImagetoBase64
 import java.io.ByteArrayOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -40,8 +43,9 @@ import java.util.*
 
 class GenerateQRActivity : AppCompatActivity() {
     private lateinit var rewardedAd:RewardedAd
-    val QRcodeWidth = 500
+    var QRcodeWidth = 500
     private val STORAGE_PERMISSION = 3
+    var text_qr_code = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generate_qr)
@@ -98,11 +102,11 @@ class GenerateQRActivity : AppCompatActivity() {
         }
         rewardedAd.loadAd(AdRequest.Builder().build(), adLoadCallback)
 
-        val text = intent.extras.getString("text").toString()
+        text_qr_code = intent.extras.getString("text").toString()
 
         Handler().postDelayed(Runnable {
-            img_qr_code.setImageBitmap(TextToImageEncode(text))
-            img_qr_code2.setImageBitmap(TextToImageEncode(text))
+            img_qr_code.setImageBitmap(TextToImageEncode(text_qr_code))
+            img_qr_code2.setImageBitmap(TextToImageEncode(text_qr_code))
             shimmer_view_container.visibility = View.GONE
         },1000)
 
@@ -116,6 +120,25 @@ class GenerateQRActivity : AppCompatActivity() {
                 shared()
             }
         }
+        if (UserProfile(this).getImgLogo() != "") {
+            img_logo.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
+            img_logo2.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
+        }
+
+        seekbar_qr_code.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                var progress = seekBar!!.progress
+                Log.d("process_test",progress.toString())
+            }
+        })
     }
 
     private fun shared(){
@@ -208,7 +231,7 @@ class GenerateQRActivity : AppCompatActivity() {
         }
         val bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444)
 
-        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight)
+        bitmap.setPixels(pixels, 0, QRcodeWidth, 0, 0, bitMatrixWidth, bitMatrixHeight)
         return bitmap
     }
 }

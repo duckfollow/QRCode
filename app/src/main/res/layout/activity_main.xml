@@ -69,10 +69,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/view_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/view_type"
-        android:layout_above="@+id/btn_create"
+        android:layout_above="@+id/view_img_logo"
         android:layout_margin="5dp">
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/txt_details"
@@ -88,6 +89,49 @@
         android:gravity="top"/>
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_above="@+id/btn_create"
+        android:id="@+id/view_img_logo"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <me.duckfollow.qrcode.view.SquareLinearLayout
+                android:id="@+id/pick_img_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="40dp">
+                <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_add_logo"/>
+            </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="เพิ่มโลโก้ขนาด 1:1 หรือ 512X512 ไฟล์ png,jpg"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
         android:layout_alignParentBottom="true"

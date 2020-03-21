@@ -20,6 +20,14 @@ class UserProfile {
         return User.getString("user_date","")
     }
 
+    fun setImgLogo(imgbase64:String){
+        this.setUserData("imglogo", imgbase64)
+    }
+
+    fun getImgLogo():String{
+        return User.getString("imglogo","")
+    }
+
     fun setUserData(key:String,value:String){
         editor = User.edit()
         editor.putString(key, value)
