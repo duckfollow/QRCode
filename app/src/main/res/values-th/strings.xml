@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">สร้าง QR Code</string>
+    <string name="message">ข้อความ</string>
+    <string name="permission_camera">permission is camera.</string>
+    <string name="btn_generate_qr_code">สร้าง QR Code</string>
+    <string name="txt_discription">เพิ่มโลโก้ขนาด 1:1 หรือ 512X512 ไฟล์ png,jpg</string>
+    <string name="btn_share">แชร์</string>
+    <string name="txt_support">ขอบคุณที่สนับสนุนวันนี้คุณจะไม่มีโฆษณามากวนคุณ</string>
+    <string name="txt_not_support">ดูโฆษณาจบ วันนี้จะไม่โฆษณามากวนคุณอีก เพื่อสนับสนุนเรานะ</string>
+</resources>

@@ -3,6 +3,7 @@ package me.duckfollow.qrcode.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
@@ -15,8 +16,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.RelativeLayout
-import android.widget.SeekBar
+import android.widget.*
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -28,6 +28,8 @@ import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -61,10 +63,15 @@ class GenerateQRActivity : AppCompatActivity() {
 //        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
 //        MobileAds.setRequestConfiguration(configuration)
         rewardedAd = RewardedAd(this, "ca-app-pub-2582707291059118/2613245693")
+//        rewardedAd = RewardedAd(this, "ca-app-pub-3940256099942544/5224354917") // test
         val adLoadCallback = object: RewardedAdLoadCallback() {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onRewardedAdLoaded() {
                 // Ad successfully loaded.
+                val current = LocalDateTime.now()
+                val formatter = DateTimeFormatter.BASIC_ISO_DATE
+                val formatted = current.format(formatter)
+                Log.d("Date_Test",formatted)
                 if (rewardedAd.isLoaded) {
                     val adCallback = object: RewardedAdCallback() {
                         override fun onRewardedAdOpened() {
@@ -72,24 +79,22 @@ class GenerateQRActivity : AppCompatActivity() {
                         }
                         override fun onRewardedAdClosed() {
                             // Ad closed.
+                            if (UserProfile(this@GenerateQRActivity).getDateUser() != formatted) {
+                                adsReward("close")
+                            }
                         }
                         override fun onUserEarnedReward(@NonNull reward: RewardItem) {
                             // User earned reward.
+                            UserProfile(this@GenerateQRActivity).setDateUser(formatted)
+                            adsReward("Reward")
                         }
                         override fun onRewardedAdFailedToShow(errorCode: Int) {
                             // Ad failed to display.
                         }
                     }
-                    val current = LocalDateTime.now()
 
-                    val formatter = DateTimeFormatter.BASIC_ISO_DATE
-                    val formatted = current.format(formatter)
-                    Log.d("Date_Test",formatted)
                     if (UserProfile(this@GenerateQRActivity).getDateUser() != formatted) {
                         rewardedAd.show(this@GenerateQRActivity, adCallback)
-                        UserProfile(this@GenerateQRActivity).setDateUser(formatted)
-                    } else {
-                        UserProfile(this@GenerateQRActivity).setDateUser(formatted)
                     }
                 }
                 else {
@@ -135,10 +140,16 @@ class GenerateQRActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                var progress = seekBar!!.progress
+                val progress = seekBar!!.progress
                 Log.d("process_test",progress.toString())
             }
         })
+
+        val isSwitchChecked = UserProfile(this).getLogoSwitch().toBoolean()
+        if (!isSwitchChecked) {
+            img_logo.visibility = View.GONE
+            img_logo2.visibility = View.GONE
+        }
     }
 
     private fun shared(){
@@ -233,6 +244,31 @@ class GenerateQRActivity : AppCompatActivity() {
 
         bitmap.setPixels(pixels, 0, QRcodeWidth, 0, 0, bitMatrixWidth, bitMatrixHeight)
         return bitmap
+    }
+
+    fun adsReward(type:String) {
+        val mView = layoutInflater.inflate(R.layout.layout_ads_reward, null)
+        val bottomSheetDialogLoading = BottomSheetDialog(this, R.style.BottomSheetDialog)
+        bottomSheetDialogLoading.setContentView(mView)
+        bottomSheetDialogLoading.setCancelable(true)
+
+        val bottomSheet = bottomSheetDialogLoading.findViewById<View>(R.id.design_bottom_sheet)
+        val behavior = BottomSheetBehavior.from(bottomSheet)
+        behavior.peekHeight = Resources.getSystem().getDisplayMetrics().heightPixels* Resources.getSystem().displayMetrics.density.toInt()
+
+        val view_root = mView.findViewById<RelativeLayout>(R.id.view_root)
+        view_root.setOnClickListener {
+            bottomSheetDialogLoading.cancel()
+        }
+
+        val text_view_ads = mView.findViewById<TextView>(R.id.text_view_ads)
+        if (type == "Reward") {
+            text_view_ads.setText(R.string.txt_support)
+        } else {
+            text_view_ads.setText(R.string.txt_not_support)
+        }
+
+        bottomSheetDialogLoading.show()
     }
 }
 

@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings.Secure
 import android.util.Log
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -69,6 +70,29 @@ class MainActivity : AppCompatActivity() {
         if (UserProfile(this).getImgLogo() != "") {
             img_logo.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
         }
+
+        val isSwitchChecked = UserProfile(this).getLogoSwitch().toBoolean()
+        switch1.isChecked = isSwitchChecked
+        if (UserProfile(this@MainActivity).getImgLogo() != "") {
+            if (isSwitchChecked) {
+                img_logo.imageAlpha = 255
+            } else {
+                img_logo.imageAlpha = 100
+            }
+        }
+
+        switch1.setOnCheckedChangeListener(object :CompoundButton.OnCheckedChangeListener{
+            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+                if (UserProfile(this@MainActivity).getImgLogo() != "") {
+                    UserProfile(this@MainActivity).setLogoSwitch(isChecked.toString())
+                    if (isChecked) {
+                        img_logo.imageAlpha = 255
+                    } else {
+                        img_logo.imageAlpha = 100
+                    }
+                }
+            }
+        })
     }
 
     override fun onRequestPermissionsResult(
@@ -117,6 +141,9 @@ class MainActivity : AppCompatActivity() {
                     val imgbase64 = ConvertImagetoBase64().bitmapToBase64(resizeBitmap)
                     UserProfile(this).setImgLogo(imgbase64)
                     img_logo.setImageBitmap(resizeBitmap)
+                    img_logo.imageAlpha = 255
+                    UserProfile(this).setLogoSwitch(true.toString())
+                    switch1.isChecked = true
                 } else {
 
                 }

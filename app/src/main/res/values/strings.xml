@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">สร้าง QR Code</string>
-    <integer name="viewfinder_border_width">30</integer>
-    <integer name="viewfinder_border_length">80</integer>
+    <string name="app_name">Generate QR Code</string>
+    <string name="message">message</string>
     <string name="permission_camera">permission is camera.</string>
+    <string name="btn_generate_qr_code">Generate QR Code</string>
+    <string name="txt_discription">Add a 1: 1 or 512X512 logo in the png, jpg file.</string>
+    <string name="btn_share">Share</string>
+    <string name="txt_support">Thanks for your support. Today you will not have many advertisements for you.</string>
+    <string name="txt_not_support">Watching ads ending today will not take many advertisements around you. To support us</string>
 </resources>

@@ -24,7 +24,7 @@
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
-                android:text="สร้าง QR Code"/>
+                android:text="@string/app_name"/>
 
 
             <ImageButton
@@ -79,7 +79,7 @@
         android:id="@+id/txt_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:hint="ข้อความ"
+        android:hint="@string/message"
         android:inputType="textMultiLine"
         android:lines="8"
         android:maxLines="10"
@@ -116,20 +116,30 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_height="match_parent">
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:checked="true"
+                android:textOff="OFF"
+                android:textOn="ON"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:text="เพิ่มโลโก้ขนาด 1:1 หรือ 512X512 ไฟล์ png,jpg"
+                android:layout_centerInParent="true"
+                android:text="@string/txt_discription"
                 android:layout_marginRight="10dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -139,7 +149,7 @@
         android:id="@+id/btn_create"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:text="generate qr code"
+        android:text="@string/btn_generate_qr_code"
         android:background="@drawable/bg_btn_pink"
         android:textColor="#FFFFFF"
         android:textSize="15dp"

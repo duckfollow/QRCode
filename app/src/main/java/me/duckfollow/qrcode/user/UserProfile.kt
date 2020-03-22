@@ -28,6 +28,14 @@ class UserProfile {
         return User.getString("imglogo","")
     }
 
+    fun setLogoSwitch(isChecked:String){
+        this.setUserData("switchlogo", isChecked)
+    }
+
+    fun getLogoSwitch():String{
+        return User.getString("switchlogo","false")
+    }
+
     fun setUserData(key:String,value:String){
         editor = User.edit()
         editor.putString(key, value)
