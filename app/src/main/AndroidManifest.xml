@@ -16,7 +16,8 @@
         android:roundIcon="@drawable/logo_app_qrcode"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ViewResultActivity"></activity>
+        <activity android:name=".activity.StoreActivity"></activity>
+        <activity android:name=".activity.ViewResultActivity" />
         <activity android:name=".activity.GenerateQRActivity" />
         <activity
             android:name=".activity.ScannerActivity"

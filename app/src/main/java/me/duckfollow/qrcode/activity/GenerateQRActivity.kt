@@ -48,12 +48,22 @@ class GenerateQRActivity : AppCompatActivity() {
     var QRcodeWidth = 500
     private val STORAGE_PERMISSION = 3
     var text_qr_code = ""
+    var template = "0"
+    var template_backup = "0"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generate_qr)
+        template = UserProfile(this).getTemplate()
+        template_backup = template
         btn_back.setOnClickListener {
             this.finish()
         }
+
+        btn_store.setOnClickListener {
+            val i_store = Intent(this,StoreActivity::class.java)
+            startActivity(i_store)
+        }
+
         MobileAds.initialize(this, "ca-app-pub-2582707291059118~8882306426")
         val android_id = Settings.Secure.getString(
             this.getContentResolver(),
@@ -110,8 +120,26 @@ class GenerateQRActivity : AppCompatActivity() {
         text_qr_code = intent.extras.getString("text").toString()
 
         Handler().postDelayed(Runnable {
-            img_qr_code.setImageBitmap(TextToImageEncode(text_qr_code))
-            img_qr_code2.setImageBitmap(TextToImageEncode(text_qr_code))
+            if (template == "0") {
+                view_template1.visibility = View.VISIBLE
+                view_template2.visibility = View.GONE
+                view_template3.visibility = View.GONE
+                img_qr_code.setImageBitmap(TextToImageEncode(text_qr_code))
+                img_qr_code2.setImageBitmap(TextToImageEncode(text_qr_code))
+            } else if (template == "1") {
+                view_template2.visibility = View.VISIBLE
+                view_template1.visibility = View.GONE
+                view_template3.visibility = View.GONE
+                img_qr_code_template2.setImageBitmap(TextToImageEncode(text_qr_code))
+                img_qr_code_template2_shared.setImageBitmap(TextToImageEncode(text_qr_code))
+            } else if (template == "2") {
+                view_template3.visibility = View.VISIBLE
+                view_template1.visibility = View.GONE
+                view_template2.visibility = View.GONE
+                img_qr_code_template3.setImageBitmap(TextToImageEncode(text_qr_code))
+                img_qr_code_template3_shared.setImageBitmap(TextToImageEncode(text_qr_code))
+            }
+
             shimmer_view_container.visibility = View.GONE
         },1000)
 
@@ -128,6 +156,10 @@ class GenerateQRActivity : AppCompatActivity() {
         if (UserProfile(this).getImgLogo() != "") {
             img_logo.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
             img_logo2.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
+            img_logo_template2.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
+            img_logo_template2_shared.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
+            img_logo_template3.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
+            img_logo_template3_shared.setImageBitmap(ConvertImagetoBase64().base64ToBitmap(UserProfile(this).getImgLogo()))
         }
 
         seekbar_qr_code.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
@@ -149,11 +181,22 @@ class GenerateQRActivity : AppCompatActivity() {
         if (!isSwitchChecked) {
             img_logo.visibility = View.GONE
             img_logo2.visibility = View.GONE
+            img_logo_template2.visibility = View.GONE
+            img_logo_template2_shared.visibility = View.GONE
+            img_logo_template3.visibility = View.GONE
+            img_logo_template3_shared.visibility = View.GONE
         }
     }
 
     private fun shared(){
-        val b = getImageUri(getBitmapFromView(view_shared2))
+        var b:Uri? = null
+        if (template == "0") {
+            b = getImageUri(getBitmapFromView(view_shared2))
+        }else if (template == "1") {
+            b = getImageUri(getBitmapFromView(view_template2_shared))
+        } else if (template == "2") {
+            b = getImageUri(getBitmapFromView(view_template3_shared))
+        }
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_STREAM, b)
@@ -205,6 +248,40 @@ class GenerateQRActivity : AppCompatActivity() {
             } else {
 
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        template = UserProfile(this).getTemplate()
+
+        if (template_backup != template) {
+            shimmer_view_container.visibility = View.VISIBLE
+            Handler().postDelayed(Runnable {
+                if (template == "0") {
+                    view_template1.visibility = View.VISIBLE
+                    view_template2.visibility = View.GONE
+                    view_template3.visibility = View.GONE
+                    img_qr_code.setImageBitmap(TextToImageEncode(text_qr_code))
+                    img_qr_code2.setImageBitmap(TextToImageEncode(text_qr_code))
+                } else if (template == "1") {
+                    view_template2.visibility = View.VISIBLE
+                    view_template1.visibility = View.GONE
+                    view_template3.visibility = View.GONE
+                    img_qr_code_template2.setImageBitmap(TextToImageEncode(text_qr_code))
+                    img_qr_code_template2_shared.setImageBitmap(TextToImageEncode(text_qr_code))
+                } else if (template == "2") {
+                    view_template3.visibility = View.VISIBLE
+                    view_template1.visibility = View.GONE
+                    view_template2.visibility = View.GONE
+                    img_qr_code_template3.setImageBitmap(TextToImageEncode(text_qr_code))
+                    img_qr_code_template3_shared.setImageBitmap(TextToImageEncode(text_qr_code))
+                }
+
+                shimmer_view_container.visibility = View.GONE
+            }, 1000)
+
+            template_backup = template
         }
     }
 

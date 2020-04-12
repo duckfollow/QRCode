@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.StoreActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:src="@drawable/ic_back_arrow_black_24dp"
+                android:background="@drawable/bg_btn_action_hover_square"/>
+
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_below="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <me.duckfollow.qrcode.view.SquareLinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_above="@+id/btn_template1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/template1"
+                            android:scaleType="centerCrop"/>
+
+                        <Button
+                            android:id="@+id/btn_template1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free"
+                            android:layout_alignParentBottom="true"/>
+
+                    </RelativeLayout>
+                </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+
+                <me.duckfollow.qrcode.view.SquareLinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_above="@+id/btn_template2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/template2"
+                            android:scaleType="centerCrop"/>
+
+                        <Button
+                            android:id="@+id/btn_template2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free"
+                            android:layout_alignParentBottom="true"/>
+
+                    </RelativeLayout>
+
+                </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <me.duckfollow.qrcode.view.SquareLinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_above="@+id/btn_template3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/template3"
+                            android:scaleType="centerCrop"/>
+
+                        <Button
+                            android:id="@+id/btn_template3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free"
+                            android:layout_alignParentBottom="true"/>
+
+                    </RelativeLayout>
+                </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+
+                <me.duckfollow.qrcode.view.SquareLinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_above="@+id/btn_template4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/template1"/>
+
+                        <Button
+                            android:id="@+id/btn_template4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free"
+                            android:layout_alignParentBottom="true"/>
+
+                    </RelativeLayout>
+
+                </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <me.duckfollow.qrcode.view.SquareLinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_above="@+id/btn_template5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/template1"/>
+
+                        <Button
+                            android:id="@+id/btn_template5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free"
+                            android:layout_alignParentBottom="true"/>
+
+                    </RelativeLayout>
+                </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+
+                <me.duckfollow.qrcode.view.SquareLinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_above="@+id/btn_template6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/template1"/>
+
+                        <Button
+                            android:id="@+id/btn_template6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free"
+                            android:layout_alignParentBottom="true"/>
+
+                    </RelativeLayout>
+
+                </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <me.duckfollow.qrcode.view.SquareLinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_above="@+id/btn_template7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/template1"/>
+
+                        <Button
+                            android:id="@+id/btn_template7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free"
+                            android:layout_alignParentBottom="true"/>
+
+                    </RelativeLayout>
+                </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+
+                <me.duckfollow.qrcode.view.SquareLinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_above="@+id/btn_template8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/template1"/>
+
+                        <Button
+                            android:id="@+id/btn_template8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free"
+                            android:layout_alignParentBottom="true"/>
+
+                    </RelativeLayout>
+
+                </me.duckfollow.qrcode.view.SquareLinearLayout>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

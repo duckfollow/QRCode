@@ -8,4 +8,8 @@
     <string name="btn_share">แชร์</string>
     <string name="txt_support">ขอบคุณที่สนับสนุนวันนี้คุณจะไม่มีโฆษณามากวนคุณ</string>
     <string name="txt_not_support">ดูโฆษณาจบ วันนี้จะไม่โฆษณามากวนคุณอีก เพื่อสนับสนุนเรานะ</string>
+    <string name="txt_view_ads">ดูโฆษณาเพื่อใช้งานเทมเพลต</string>
+    <string name="btn_free">ฟรี</string>
+    <string name="btn_use">กำลังใช้งาน</string>
+    <string name="use_template">คุณได้ใช้งานเทมเพลตนี้แล้ว</string>
 </resources>

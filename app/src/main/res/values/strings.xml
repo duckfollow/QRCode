@@ -7,4 +7,8 @@
     <string name="btn_share">Share</string>
     <string name="txt_support">Thanks for your support. Today you will not have many advertisements for you.</string>
     <string name="txt_not_support">Watching ads ending today will not take many advertisements around you. To support us</string>
+    <string name="txt_view_ads">View the ad to use the template.</string>
+    <string name="btn_free">Free</string>
+    <string name="btn_use">In use</string>
+    <string name="use_template">You have already used this template.</string>
 </resources>

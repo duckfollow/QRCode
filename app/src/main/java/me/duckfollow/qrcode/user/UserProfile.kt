@@ -36,6 +36,14 @@ class UserProfile {
         return User.getString("switchlogo","false")
     }
 
+    fun setTemplate(id:String) {
+        this.setUserData("template",id)
+    }
+
+    fun getTemplate():String {
+        return User.getString("template","0")
+    }
+
     fun setUserData(key:String,value:String){
         editor = User.edit()
         editor.putString(key, value)
